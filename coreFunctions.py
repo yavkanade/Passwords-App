@@ -31,25 +31,11 @@ def decrypt_string(file_name: str, key: int, keyfile: str):
     
 
 def combine_strings(name, password, questions, answers):
-    combined_string = name + "\n" + password + "\n"
+    combined_string = str(name) + "\n" + str(password) + "\n"
 
     for i in range(len(questions)):
         combined_string += str(questions[i]) + "\n" + str(answers[i]) + "\n"
 
     return combined_string
     
-name = "John Doe"
-password = "my_password"
-questions = ["What is your favorite color?", "What is your pet's name?"]
-answers = ["Blue", "Buddy"]
 
-result = combine_strings(name, password, questions, answers)
-    
-
-encrypt_string(result, "encrypted.txt", 12 , "keyfile.txt")
-
-encrypt_string("result", "encrypted1.txt", 123 , "keyfile2.txt")
-print(decrypt_string( "encrypted.txt", 12, "keyfile.txt"))
-print(decrypt_string( "encrypted1.txt", 123, "keyfile2.txt"))
-
-print(result==decrypt_string( "encrypted.txt", 12, "keyfile.txt"))

@@ -55,8 +55,7 @@ class SignUp(tk.Frame):
             self.passwordTxt.grid(row=3, column=1, columnspan=2, padx=30, pady=10)
 
 
-            self.questionsNums = ["Question 1", "Question 2", "Question 3", "Question 4",
-                            "Question 5", "Question 6", "Question 7", "Question 8"]
+            self.questionsNums = ["Question 1", "Question 2", "Question 3"]
             self.questions = []
             self.entries = []
 
@@ -72,8 +71,6 @@ class SignUp(tk.Frame):
                 self.questions.append(question)
             self.pack()
 
-            self.info=combine_strings(str(self.loginTxt.get()), str(self.passwordTxt.get()), self.questions, self.entries)
-            
             self.loginButton = tk.Button(self, text="CREATE!!!!!!!!!!!!!!", font=("Arial", 20), command=self.createUser)
             self.loginButton.grid(row=4, column=0, padx=30, pady=30)
 
@@ -83,10 +80,25 @@ class SignUp(tk.Frame):
         new_frame.pack()
 
 
-
-
+            
     def createUser(self):
+        from HomePage import HomePage
 
-        encrypt_string(self.info, 'user.txt', int(str(self.UserKeyTxt.get())))
+        userKeyInt = int(self.UserKeyTxt.get())
+        adminKeyInt = int(self.adminKeytxt.get())
+        store_key_hash("usersKey.txt", userKeyInt)
+
+        # Get the text from each question and entry
+        question_texts = [question.get() for question in self.questions]
+        entry_texts = [entry.get() for entry in self.entries]
+
+        # Pass the question and entry texts to combine_strings
+        self.info = combine_strings(str(self.loginTxt.get()), str(self.passwordTxt.get()), question_texts, entry_texts)
+        print(self.info)
+
+        encrypt_string(self.info, 'user.txt', adminKeyInt, 'admin_key_hash.txt')
+        encrypt_string("Promt","encrypted.txt", userKeyInt, "usersKey.txt")
+        
+        self.switch_frame(HomePage)
 
 

@@ -33,6 +33,10 @@ class HomePage(tk.Frame):
 
         self.pack()
 
+
+    def set_adminKEY(self, adminKEY):
+        self.adminKEY = adminKEY
+
     
 
 
@@ -49,7 +53,7 @@ class HomePage(tk.Frame):
     def decrypt_stuff(self):
         try:
             self.keyInt = int(str(self.ketTXT.get()))
-            decrypted_text = decrypt_string('l.txt', self.keyInt)
+            decrypted_text = decrypt_string("encrypted.txt", self.keyInt,"usersKey.txt")
             self.userText.delete("1.0", tk.END)
             self.userText.insert(tk.END, decrypted_text)
         except ValueError:
@@ -57,6 +61,8 @@ class HomePage(tk.Frame):
 
     def saveStuff(self):
         encrypted_text = self.userText.get("1.0", "end-1c")
-        key = int(str(self.ketTXT.get()))
-        encrypt_string(encrypted_text, 'l.txt', key)
-        messagebox.showinfo(title="remember da key ma guy", message=f"I saved and encrypted your stuff. The key is {key}")
+        key1 = int(str(self.ketTXT.get()))
+        if verify_key( "usersKey.txt",key1):
+
+            encrypt_string(encrypted_text, "encrypted.txt", key1,'l.txt')
+        messagebox.showinfo(title="remember da key ma guy", message=f"I saved and encrypted your stuff. The key is {key1}")

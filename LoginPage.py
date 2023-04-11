@@ -56,8 +56,7 @@ class LoginPage(tk.Frame):
         self.loginButton = tk.Button(self, text="Login", font=("Arial", 20), command=self.login)
         self.loginButton.grid(row=4, column=0, padx=30, pady=30)
 
-        self.questionsNums = ["Question 1", "Question 2", "Question 3", "Question 4",
-                          "Question 5", "Question 6", "Question 7", "Question 8"]
+        self.questionsNums = ["Question 1", "Question 2", "Question 3"]
         self.questions = []
         self.entries = []
 
@@ -80,13 +79,19 @@ class LoginPage(tk.Frame):
 
 
     def login(self):
-        testString=combine_strings(str(self.loginTxt.get()), str(self.passwordTxt.get()), self.questions, self.entries)
-        
-        adminKeyInt = int(self.adminKeytxt.get())
-        actualString=decrypt_string("user.txt", adminKeyInt,"admin_key_hash.txt")
-        if testString==actualString:
-            self.switch_frame(HomePage)
+        # Get the text from each question and entry
+        question_texts = [question.get() for question in self.questions]
+        entry_texts = [entry.get() for entry in self.entries]
 
+        # Pass the question and entry texts to combine_strings
+        testString = combine_strings(str(self.loginTxt.get()), str(self.passwordTxt.get()), question_texts, entry_texts)
+
+        adminKeyInt = int(self.adminKeytxt.get())
+        actualString = decrypt_string("user.txt", adminKeyInt, "admin_key_hash.txt")
+        from HomePage import HomePage
+
+        if testString == actualString:
+            self.switch_frame(HomePage)
 
 
 
