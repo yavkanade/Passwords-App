@@ -10,10 +10,10 @@ class AdminHashKeyPage(tk.Frame):
         self.master.geometry("900x900")
         self.master.title("Admin Key Setup")
 
-        self.label_key = tk.Label(self, text="Enter the admin key:", font=("Arial", 20))
+        self.label_key = tk.Label(self, text="Create the admin key(integer):", font=("Arial", 20))
         self.label_key.pack(padx=30, pady=10)
 
-        self.key_txt = tk.Entry(self, width=30, font=("Arial", 20))
+        self.key_txt = tk.Entry(self, width=30, font=("Arial", 20), show="*")
         self.key_txt.pack(padx=30, pady=10)
 
         self.submit_button = tk.Button(self, text="Submit", font=("Arial", 20), command=self.submit_admin_key)

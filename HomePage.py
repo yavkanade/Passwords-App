@@ -20,10 +20,10 @@ class HomePage(tk.Frame):
         self.button_decrypt = tk.Button(self, text="Decrypt", command=self.decrypt_stuff)
         self.button_decrypt.pack(padx=30, pady=10)
 
-        self.label = tk.Label(self, text="Field for your super secretive passwords and stuff yk!", font=("Arial", 25))
+        self.label = tk.Label(self, text="Field for your super secretive passwords they are under super protection!", font=("Arial", 25))
         self.label.pack(padx=30, pady=10)
 
-        self.userText = tk.Text(self, height=10, width=30, font=("Arial", 20))
+        self.userText = tk.Text(self, height=10, width=30, font=("Arial", 18))
         self.userText.pack(padx=30, pady=10)
 
         self.button1 = tk.Button(self, text="Save", command=self.saveStuff)
@@ -64,5 +64,5 @@ class HomePage(tk.Frame):
         key1 = int(str(self.ketTXT.get()))
         if verify_key( "usersKey.txt",key1):
 
-            encrypt_string(encrypted_text, "encrypted.txt", key1,'l.txt')
+            encrypt_string(encrypted_text, "encrypted.txt", key1, 'usersKey.txt')
         messagebox.showinfo(title="remember da key ma guy", message=f"I saved and encrypted your stuff. The key is {key1}")

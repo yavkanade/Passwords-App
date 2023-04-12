@@ -14,7 +14,7 @@ class SignUp(tk.Frame):
         self.labelkey = tk.Label(self, text="Enter admin key:", font=("Arial", 20))
         self.labelkey.pack(padx=30, pady=10)
 
-        self.adminKeytxt = tk.Entry(self, width=30, font=("Arial", 20))
+        self.adminKeytxt = tk.Entry(self, width=30, font=("Arial", 20), show="*")
         self.adminKeytxt.pack(padx=30, pady=10)
 
         self.submit_admin_key_button = tk.Button(self, text="Submit", font=("Arial", 20), command=self.check_admin_key)
@@ -55,7 +55,7 @@ class SignUp(tk.Frame):
             self.passwordTxt.grid(row=3, column=1, columnspan=2, padx=30, pady=10)
 
 
-            self.questionsNums = ["Question 1", "Question 2", "Question 3"]
+            self.questionsNums = ["Question 1", "Question 2", "Question 3","question 4", "Question 5","question 6", "Question 7", "Question 8"]
             self.questions = []
             self.entries = []
 
