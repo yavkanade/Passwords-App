@@ -23,11 +23,10 @@ class LoginPage(tk.Frame):
 
     def check_admin_key(self):
         adminKeyInt = int(self.adminKeytxt.get())
-        if verify_key("admin_key_hash.txt", adminKeyInt):
-            self.labelkey.pack_forget()
-            self.adminKeytxt.pack_forget()
-            self.submit_admin_key_button.pack_forget()
-            self.create_Login_form()
+        self.labelkey.pack_forget()
+        self.adminKeytxt.pack_forget()
+        self.submit_admin_key_button.pack_forget()
+        self.create_Login_form()
 
     def create_Login_form(self):
 
